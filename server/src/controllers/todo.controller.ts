@@ -5,7 +5,7 @@ import { MongoClient, ObjectId } from "mongodb"
 type Todo = {
     title: string
     description: string
-    completed: false
+    completed: boolean
 }
 
 export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
