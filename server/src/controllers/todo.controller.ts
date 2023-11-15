@@ -6,6 +6,7 @@ type Todo = {
     title: string
     description: string
     completed: boolean
+    createdAt: Date
 }
 
 export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
@@ -13,7 +14,7 @@ export const createTodo = async (req: Request, res: Response, next: NextFunction
     const todo = req.body as Todo
 
     try {
-
+        todo.createdAt = new Date();
         if(!todo.title || !todo.description) throw createHttpError(400, "Missing todo details")
 
         const todoCollections = dbClient.db("todok").collection('todos')
