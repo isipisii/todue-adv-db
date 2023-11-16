@@ -1,3 +1,4 @@
+import { TTodoForm } from "@/components/todo-form"
 
 export async function fetchTodos(): Promise<TTodo[]> {
     const response = await fetch("http://localhost:8000/todo")
@@ -8,35 +9,41 @@ export async function fetchTodos(): Promise<TTodo[]> {
     return todos
 }
 
-export async function deleteTodo(todoId: string): Promise<void> {
+export async function deleteTodo(todoId: string) {
     const response = await fetch(`http://localhost:8000/todo/${todoId}/delete`, {
         method: "DELETE"
     })
-    const data = await response.json()
+    const data = response
 
     return data
 }
 
-export async function updateTodo(todoDetails: TTodo, todoId: string): Promise<TTodo> {
+export async function updateTodo(todoDetails: TTodoForm, todoId: string): Promise<TTodo> {
     const response = await fetch(`http://localhost:8000/todo/${todoId}/update`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
         method: "PATCH",
         body: JSON.stringify(todoDetails)
     })
 
     const data = await response.json()
     const todo: TTodo = data.data
-
+    
     return todo
 }
 
-export async function createTodo(todoDetails: TTodo): Promise<TTodo> {
+export async function createTodo(todoDetails: TTodoForm) {
     const response = await fetch(`http://localhost:8000/todo`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
         method: "POST",
         body: JSON.stringify(todoDetails)
     })
 
     const data = await response.json()
-    const todo: TTodo = data.data
+    const newTodo: TTodo = data.data
 
-    return todo
+    return newTodo
 }
