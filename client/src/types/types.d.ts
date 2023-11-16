@@ -3,4 +3,5 @@ type TTodo = {
     title: string
     description: string
     createdAt?: Date
+    completed?: boolean
 }
