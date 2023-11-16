@@ -14,8 +14,7 @@ export default function TodoDropdown({ todo }: {todo: TTodo}) {
     
     async function handleDeleteTodo(todoId: string) {
         try {
-            const response = await deleteTodo(todoId)
-            console.log(response)
+            await deleteTodo(todoId)
             const updatedTodoArr = todos.filter(todo => todo._id !== todoId)
 
             setTodos(updatedTodoArr)
@@ -26,24 +25,24 @@ export default function TodoDropdown({ todo }: {todo: TTodo}) {
 
     return (
         <DropdownMenu>
-        <DropdownMenuTrigger asChild className='p-0'>
-            <Button variant="link" size="sm" className='h-4'>
-                <MoreHorizontal className='text-xs'/>
-            </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => {
-                setTodoToEdit(todo)
-                setOpenEditTodoDialog(true)
-            }}>
-                <Pencil className="w-4 h-4 mr-3" />
-                Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem className='!text-red-500' onClick={() => handleDeleteTodo(todo._id)}>
-                <Trash2 className="w-4 h-4 mr-3" />
-                Delete
-            </DropdownMenuItem>
-        </DropdownMenuContent>
+            <DropdownMenuTrigger asChild className='p-0'>
+                <Button variant="link" size="sm" className='h-4'>
+                    <MoreHorizontal className='text-xs'/>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => {
+                    setTodoToEdit(todo)
+                    setOpenEditTodoDialog(true)
+                }}>
+                    <Pencil className="w-4 h-4 mr-3" />
+                    Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem className='!text-red-500' onClick={() => handleDeleteTodo(todo._id)}>
+                    <Trash2 className="w-4 h-4 mr-3" />
+                    Delete
+                </DropdownMenuItem>
+            </DropdownMenuContent>
         </DropdownMenu>
     )
 }
