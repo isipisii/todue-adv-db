@@ -14,17 +14,27 @@ type TTodoProviderProps = {
 type TTodoProviderState = {
     todos: TTodo[]
     setTodos: (todo: TTodo[]) => void
+    todoToEdit: TTodo | null
+    setTodoToEdit: (todo: TTodo | null) => void
+    openEditTodoDialog: boolean
+    setOpenEditTodoDialog: (state: boolean) => void
 }
 
 const initialState: TTodoProviderState = {
     todos: [],
-    setTodos: () => null
+    setTodos: () => null,
+    todoToEdit: null,
+    setTodoToEdit: () => null,
+    openEditTodoDialog: false,
+    setOpenEditTodoDialog: () => null,
 }
 
 const TodoProviderContext = createContext<TTodoProviderState>(initialState)
 
 export function TodoProvider({ children }: TTodoProviderProps) {
     const [todos, setTodos] = useState<TTodo[]>([])
+    const [todoToEdit, setTodoToEdit] = useState<TTodo| null>(null)
+    const [openEditTodoDialog,  setOpenEditTodoDialog] = useState(false)
 
     useEffect(() => {
         async function getTodos(){
@@ -39,7 +49,16 @@ export function TodoProvider({ children }: TTodoProviderProps) {
     },[])
 
   return (
-    <TodoProviderContext.Provider value={{ todos, setTodos}}>
+    <TodoProviderContext.Provider 
+        value={{ 
+            todos, 
+            setTodos, 
+            todoToEdit, 
+            setTodoToEdit,
+            openEditTodoDialog,
+            setOpenEditTodoDialog
+        }}
+    >
         {children}
     </TodoProviderContext.Provider>
   )
