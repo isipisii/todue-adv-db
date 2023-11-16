@@ -23,7 +23,7 @@ export default function EditTodoDialog() {
             <DialogHeader>
               <DialogTitle>Edit to-do</DialogTitle>
               <DialogDescription>
-                Make changes to you to-do
+                Make changes to your to-do
               </DialogDescription>
             </DialogHeader>
             <TodoForm setOpen={setOpenEditTodoDialog} isEditing={true} />
