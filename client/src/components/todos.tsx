@@ -11,11 +11,17 @@ function Todos() {
           <CreateTodoDialog />
         </div>
         <div className="overflow-y-auto max-h-[400px]">
+          { todos.length ? 
             <div className="flex gap-2 flex-col">
                 {todos?.map((todo, index) => (
                     <Todo key={index} todo={todo} />
                 ))}
             </div>
+            :
+            <div className="w-full flex items-center justify-center h-[100px]">
+               <p className="opacity-[.3]">No to-dos yet.</p>
+            </div>
+          }
         </div>
     </div>
   )
