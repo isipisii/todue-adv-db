@@ -20,14 +20,16 @@ const todoFormSchema = z.object({
     title: z.string({
         required_error: "To-do title is required",
         invalid_type_error: "Name must be a string",
-    }).min(6, {
-        message: "To-do title must be at least 6 characters"
     }).max(20, {
         message: "To-do title should not exceed to 20 characters"
+    }).refine(data => data.trim().length > 0, {
+        message: "To-do title is required"
     }),
     description: z.string().max(100, {
-        message: "To-do description should not exceed to 100 characters"
-    }),
+        message: "To-do description should not exceed 100 characters"
+    }).refine(data => data.trim().length > 0, {
+        message: "To-do description is required"
+    })
 })
 
 export type TTodoForm = z.infer<typeof todoFormSchema>
@@ -99,7 +101,7 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full">Add</Button>
+                <Button type="submit" className="w-full">{isEditing ? "Save changes" : "Add"}</Button>
             </form>
         </Form>
     )
