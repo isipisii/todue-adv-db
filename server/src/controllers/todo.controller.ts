@@ -5,16 +5,18 @@ import { MongoClient, ObjectId } from "mongodb"
 type Todo = {
     title: string
     description: string
-    completed: boolean
+    completed?: boolean
     createdAt: Date
 }
 
 export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
     const dbClient = req.app.locals.dbClient as MongoClient
     const todo = req.body as Todo
-
+    
     try {
         todo.createdAt = new Date();
+        todo.completed = false;
+        
         if(!todo.title || !todo.description) throw createHttpError(400, "Missing todo details")
 
         const todoCollections = dbClient.db("todok").collection('todos')
