@@ -18,7 +18,7 @@ export async function deleteTodo(todoId: string) {
     return data
 }
 
-export async function updateTodo(todoDetails: TTodoForm, todoId: string): Promise<TTodo> {
+export async function updateTodo(todoDetails: Partial<TTodoForm & { completed?: boolean }>, todoId: string): Promise<TTodo> {
     const response = await fetch(`http://localhost:8000/todo/${todoId}/update`, {
         headers: {
             "Content-Type": "application/json",
