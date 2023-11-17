@@ -61,7 +61,7 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
             if(!todoToEdit) return
 
             const updatedTodo = await updateTodo(values, todoToEdit._id)
-            const updatedTodoArr = todos.map(todo => todo._id === updatedTodo._id ? {...updatedTodo} : todo) as TTodo[]
+            const updatedTodoArr = todos.map(todo => todo._id === updatedTodo._id ? {...updatedTodo} : todo)
             
             setTodos(updatedTodoArr)
              //this will close the specific dialog from where its mounted
