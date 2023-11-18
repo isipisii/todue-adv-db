@@ -16,9 +16,9 @@ function Todos() {
         {isTodosLoading ? (
           <div className="flex gap-2 flex-col">
             {[...new Array(3)].map((_, index) => (
-              <div className="p-4 rounded-lg border space-y-3">
-                <Skeleton className="w-[30%] h-[1.125rem] rounded-md" key={index} />
-                <Skeleton className="w-[50%] h-[0.75rem] rounded-md" key={index} />
+              <div className="p-4 rounded-lg border space-y-3" key={index}>
+                <Skeleton className="w-[30%] h-[1.125rem] rounded-md" />
+                <Skeleton className="w-[50%] h-[0.75rem] rounded-md" />
               </div>
             ))}
           </div>
