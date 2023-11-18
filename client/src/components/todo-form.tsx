@@ -54,7 +54,7 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
             setOpen(false)
             toast.success("To-do created.")
         } catch (error) {
-            toast.success("Creating to-do failed")
+            toast.error("Creating to-do failed")
             console.error(error)
         }
     }    
@@ -72,7 +72,7 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
             setOpen(false)
             toast.success("To-do updated.")
         } catch (error) {
-            toast.success("Updating to-do failed")
+            toast.error("Updating to-do failed")
             console.error(error)
         }
     }    

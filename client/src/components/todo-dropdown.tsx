@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useTodo } from './providers/todo-provider';
 import { deleteTodo } from '@/services/todoApi';
+import { toast } from 'sonner';
 
 export default function TodoDropdown({ todo }: {todo: TTodo}) {
     const { setOpenEditTodoDialog, setTodoToEdit, todos, setTodos } = useTodo()
@@ -18,7 +19,9 @@ export default function TodoDropdown({ todo }: {todo: TTodo}) {
             const updatedTodoArr = todos.filter(todo => todo._id !== todoId)
 
             setTodos(updatedTodoArr)
+            toast.success("To-do has been successfully deleted. ")
         } catch (error) {
+            toast.error("Deleting to-do failed")
             console.error(error)
         }
     }
