@@ -15,6 +15,7 @@ import { Input } from "./ui/input"
 
 import { useTodo } from "./providers/todo-provider";
 import { createTodo, updateTodo } from "@/services/todoApi";
+import { toast } from 'sonner'
 
 const todoFormSchema = z.object({
     title: z.string({
@@ -51,7 +52,9 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
 
             //this will close the specific dialog from where its mounted
             setOpen(false)
+            toast.success("To-do created.")
         } catch (error) {
+            toast.success("Creating to-do failed")
             console.error(error)
         }
     }    
@@ -67,7 +70,9 @@ function TodoForm({ isEditing, setOpen }: { isEditing?: boolean, setOpen: (atate
              //this will close the specific dialog from where its mounted
             setTodoToEdit(null)
             setOpen(false)
+            toast.success("To-do updated.")
         } catch (error) {
+            toast.success("Updating to-do failed")
             console.error(error)
         }
     }    
